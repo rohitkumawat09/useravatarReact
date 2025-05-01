@@ -24,7 +24,7 @@ function App() {
     const nameInputTrim = nameInput.trim();
     if (nameInputTrim) {
       const firstWord = nameInputTrim;
-      const form = firstWord.toUpperCase();
+      const form = firstWord.toUpperCase().split("")[0];
       setUsers([...users, nameInputTrim.split("")[0]]);
       setFirstUser(form);
       setNameInput('');
