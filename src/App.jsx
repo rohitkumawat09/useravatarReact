@@ -25,7 +25,9 @@ function App() {
     if (nameInputTrim) {
       const firstWord = nameInputTrim;
       const form = firstWord.toUpperCase().split("")[0];
-      setUsers([...users, nameInputTrim.split("")[0]]);
+      console.log(form);
+      
+      setUsers([...users, form ]);
       setFirstUser(form);
       setNameInput('');
       setCount(null);

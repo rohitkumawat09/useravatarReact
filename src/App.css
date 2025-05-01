@@ -1,14 +1,20 @@
-
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
 }
 
 .container {
+  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 100%;
   padding: 50px;
 }
 
@@ -24,13 +30,21 @@ body {
 .wrapper {
   display: flex;
   justify-content: space-between;
+  margin: auto;
+  gap: 20px;
+  background-color: white;
+  width: 100%;
+  border-radius: 30px;
+  height: 300px;
   align-items: center;
+  text-align: center;
 }
 
 .CiCirclePlus {
   font-size: 32px;
   cursor: pointer;
   color: #4CAF50;
+  transition: transform 0.2s;
 }
 
 .CiCirclePlus:hover {
@@ -42,6 +56,7 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
+  justify-content: flex-start;
 }
 
 .delete {
@@ -71,11 +86,17 @@ body {
 }
 
 .para_list {
-  margin-top: 20px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
   padding: 20px;
+  background-color: white;
   border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   border: 1px solid #ddd;
-  position: relative;
+  z-index: 10;
 }
 
 .RxCross2 {
@@ -83,24 +104,32 @@ body {
   top: 10px;
   right: 10px;
   font-size: 20px;
+  color: #333;
   cursor: pointer;
 }
 
 .new {
+  background-color: rgb(186, 182, 182);
+  padding: 20px;
   text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
 }
 
+.target {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .target label {
-  display: block;
-  margin-bottom: 8px;
   font-weight: bold;
 }
 
 .target input {
   width: 100%;
   padding: 8px 12px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -108,10 +137,14 @@ body {
 .btn {
   display: flex;
   justify-content: space-between;
+  background-color: rgb(186, 182, 182);
+  padding: 8px;
+  border-radius: 0px 0px 20px 20px;
 }
 
-.Cencel,
-.Confirm {
+.Cencel {
+  background-color: #ccc;
+  color: #333;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -119,13 +152,22 @@ body {
   font-weight: bold;
 }
 
-.Cencel {
-  background-color: #ccc;
+.Cencel:hover {
+  background-color: #bbb;
 }
 
 .Confirm {
   background-color: #4CAF50;
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.Confirm:hover {
+  background-color: #45a049;
 }
 
 .good {
@@ -137,11 +179,14 @@ body {
 .good .one button,
 .good .two button {
   padding: 10px 20px;
-  background-color: #f44336;
-  color: white;
   border: none;
   border-radius: 5px;
+  color: white;
   cursor: pointer;
+}
+
+.good .one button {
+  background-color: #f44336;
 }
 
 .good .two button {
