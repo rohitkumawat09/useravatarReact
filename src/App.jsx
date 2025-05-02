@@ -9,6 +9,7 @@ function App() {
   const [nameInput, setNameInput] = useState('');
   const [firstUser, setFirstUser] = useState(null);
   const [users, setUsers] = useState([]);
+  const [deleteIndex, setDeleteIndex] = useState(null);
   console.log(users);
   // console.log(firstUser);
   
@@ -26,8 +27,14 @@ function App() {
       const firstWord = nameInputTrim;
       const form = firstWord.toUpperCase().split("")[0];
       console.log(form);
+      const assignedColor = getRandomColor();
       
-      setUsers([...users, form ]);
+      const newUser = {
+        letter: form,
+        color: assignedColor,
+      };
+      setUsers([...users, newUser]);
+      // setUsers([...users, form ]);
       setFirstUser(form);
       setNameInput('');
       setCount(null);
@@ -41,17 +48,26 @@ function App() {
   }
   
 
-  function cut(indexToRemove){
-    setUsers((prevUsers) =>
-      prevUsers.filter((_, index) => index !== indexToRemove)
-    );
-  }
+  // function cut(indexToRemove){
+  //   setUsers((prevUsers) =>
+  //     prevUsers.filter((_, index) => index !== indexToRemove)
+  //   );
+  // }
+  function cut(index) {
+    setDeleteIndex(index); }
 
-  function handleDeleteUser() {
-  }
+    function handleDeleteUser() {
+      if (deleteIndex !== null) {
+        setUsers((prevUsers) =>
+          prevUsers.filter((_, index) => index !== deleteIndex)
+        );
+        setDeleteIndex(null); 
+      }
+    }
+    
   
   function handleDeleteCancel() {
-
+    setDeleteIndex(null);
   }
 
 
@@ -59,45 +75,37 @@ function App() {
     <>
       <div className="container">
         <div className="main">
+          
           <div className='wrapper'>
           
-{/* 
-<div className="usere">
-
-{users.map((user, index) => (
-    <p key={index}   style={{ backgroundColor: getRandomColor(),  }}>{user}</p>
-  ))}
-
-
-
-</div> */}
 
 
    
+
 <div className='usere'>
-  {users.map((firstUser, index) => (
-    <div className='delete' key={index}  style={{ backgroundColor: getRandomColor(),  }}>
-      <div className='userdelete' onClick={() => cut(index)}>X</div>
-      <p>{firstUser}</p>
-    </div>
-  ))}
-</div>
+              {users.map((user, index) => (
+                <div className='delete' key={index} style={{ backgroundColor: user.color }}>
+                  <div className='userdelete' onClick={() => cut(index)}>X</div>
+                  <p>{user.letter}</p>
+                </div>
+              ))}
+            </div>
 
             <span onClick={() => toggle("HTML")} className='CiCirclePlus' ><CiCirclePlus /></span>
 
           </div>
 
-
-<div className='good'>
-  <div className='one'>
-    <button  onClick={ handleDeleteUser}>Delete</button>
+          {deleteIndex !== null && (
+  <div className="overlay">
+    <div className="delete-modal">
+      <p>Are you sure you want to delete this user?</p>
+      <div className="modal-buttons">
+        <button onClick={handleDeleteUser}>Delete</button>
+        <button onClick={handleDeleteCancel}>Cancel</button>
+      </div>
+    </div>
   </div>
-  <div className='two'>
-    <button onClick={handleDeleteCancel}>
-      cancel
-    </button>
-  </div>
-</div>
+)}
 
 
 
